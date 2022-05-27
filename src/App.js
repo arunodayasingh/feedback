@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+// import FedbackTrial from "./components/feebacktrail"
+// import CustomerFeedback from './components/customer_feedback'
+import BackToTop from './components/customer feedback2'
+import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import Thankyou from './components/thankyou'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div>
+    <Routes>
+      <Route extact path="/"  element={<BackToTop/>} /> 
+      <Route extact path="/thankyou" element={<Thankyou/>} /> 
+    </Routes>
     </div>
-  );
+      
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
