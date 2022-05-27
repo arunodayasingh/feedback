@@ -9,7 +9,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
-import logo from './images/logo.png'
+import logo from './images/logo.png';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
 import Paper from '@mui/material/Paper';
@@ -135,16 +135,36 @@ export default function BackToTop(props) {
       <CssBaseline />
       <AppBar style={{background:"linear-gradient(90deg, rgba(157,236,244,1) 31%, rgba(61,61,94,1) 100%)"}}>
         <Toolbar>
-          <Typography >
-            <img src={logo} style={{height:"50px",width:"120px",marginTop:"6px"}} alt=""/>
-          </Typography>
+          <Grid container  xs={12}>
+
+                <Grid xs={2}>
+                <Typography >
+                  <img src={logo} style={{height:"50px",width:"120px",marginTop:"6px"}} alt=""/>
+                </Typography>
+                </Grid>
+
+                <Grid xs={7}>
+              
+                </Grid>
+
+                <Grid xs={3} style={{marginTop:"16px"}}>
+                <Typography >
+                      SECURE | ANALYSE | OPTIMIZE
+                </Typography>
+                </Grid>
+
+             
+
+
+          </Grid>
+          
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container>
         <Box sx={{ my: 2 }}>
         <Grid xs={12}>
-             <Typography style={{fontWeight:"bolder",textAlign:"center",marginTop:"12px"}}>
+             <Typography style={{fontWeight:"bolder",textDecorationLine:"underline",textAlign:"center",marginTop:"16px"}}>
                  CUSTOMER FEEDBACK FORM
              </Typography>
          </Grid>
@@ -158,7 +178,7 @@ export default function BackToTop(props) {
                  >
                 <Grid xs={2}>
                 <Typography 
-                style={{fontWeight:"bolder", marginLeft:"24px",marginTop:"16px",marginBottom:"16px",padding:"4px",borderRadius:"6px",border:"1px solid black", display:"inline-flex", color:"#000"}}>
+                style={{fontWeight:"bolder", marginLeft:"24px",marginTop:"16px",marginBottom:"16px",padding:"4px",borderRadius:"6px",border:"1px solid black", display:"inline-flex",background:"#000",color:"#fff"}}>
                    Basic Information
                 </Typography>
 
@@ -185,9 +205,11 @@ export default function BackToTop(props) {
                 </Typography>
 
                 <Grid xs={12} style={{marginLeft:"24px"}}>
-                    <h5>
+                <Typography 
+                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"16px",padding:"4px",borderRadius:"6px",border:"1px solid black", display:"inline-flex",background:"#000",color:"#fff"}}>
+
                     Overall experience with our service
-                    </h5>
+                   </Typography>
                
             
                 <Grid xs={12}>
@@ -234,9 +256,12 @@ export default function BackToTop(props) {
 
 {/* feedback    */}
     <Grid xs={12} style={{marginLeft:"24px"}}>
-                    <h5>
+    <Typography 
+                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"16px",padding:"4px",borderRadius:"6px",border:"1px solid black", display:"inline-flex",
+                background:"#000",color:"#fff"}}>
+
                     Feedback Information
-                    </h5>
+                    </Typography>
                
             
                 <Grid xs={12}>
@@ -341,7 +366,7 @@ export default function BackToTop(props) {
             <TextareaAutosize
             aria-label="minimum height"
             minRows={5}
-            placeholder="please share your message here."
+            placeholder="please share your message."
             style={{ width: 450 }}
             name="message"
             value={toSend.message}
