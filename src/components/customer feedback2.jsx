@@ -81,6 +81,8 @@ export default function BackToTop(props) {
     const [toSend, setToSend] = useState({
         from_name: '',
         to_name: 'arunodaya',
+        email: '',
+        contact: '',
         message: '',
         value1: '',
         value2: '',
@@ -133,25 +135,21 @@ export default function BackToTop(props) {
     return (
         <React.Fragment>
       <CssBaseline />
-      <AppBar style={{background:"linear-gradient(90deg, rgba(157,236,244,1) 31%, rgba(61,61,94,1) 100%)"}}>
+      <AppBar style={{background:"#9DECF4"}}>
         <Toolbar>
           <Grid container  xs={12}>
 
-                <Grid xs={2}>
+                <Grid xs={4}>
                 <Typography >
                   <img src={logo} style={{height:"50px",width:"120px",marginTop:"6px"}} alt=""/>
-                </Typography>
-                </Grid>
-
-                <Grid xs={7}>
-              
-                </Grid>
-
-                <Grid xs={3} style={{marginTop:"16px"}}>
-                <Typography >
+                <Typography style={{fontSize:"8px",color:"#000"}}>
                       SECURE | ANALYSE | OPTIMIZE
                 </Typography>
+                </Typography>
+
                 </Grid>
+
+               
 
              
 
@@ -163,46 +161,122 @@ export default function BackToTop(props) {
       <Toolbar id="back-to-top-anchor" />
       <Container>
         <Box sx={{ my: 2 }}>
-        <Grid xs={12}>
-             <Typography style={{fontWeight:"bolder",textDecorationLine:"underline",textAlign:"center",marginTop:"16px"}}>
+        <Grid xs={12} style={{marginTop:"24px"}}>
+             <Typography style={{fontFamily:"monospace",textAlign:"center",fontSize:"24px",marginTop:"15px"}}>
                  CUSTOMER FEEDBACK FORM
              </Typography>
+             
          </Grid>
-            <Paper elevation={3} style={{marginTop:"30px"}}>
+      <Paper elevation={3} style={{marginTop:"30px"}}>
+
+                <Grid xs={12} style={{marginTop:"16px"}}>
+
+
+                <Typography style={{paddingTop:"12px",marginLeft:"24px",marginBottom:"4px",fontSize:"12px"}}>
+                Please take a few minutes to give us feedback about our service by filling in this short Customer Feedback Form. We are conducting this research in order to measure your level of satisfaction with the quality of our service. We thank you for your participation.
+                </Typography>
+                </Grid>
+                <hr style={{width:"97%",paddingLeft:"24px" }}/>
+
                 <Grid
                  xs={12}
                  container
                  direction="row"
                  justifyContent="flex-start"
                  alignItems="flex-start"
+                 style={{borderBottom:"1px solid black"}}
                  >
-                <Grid xs={2}>
+                <Grid xs={12} >
+                  
                 <Typography 
-                style={{fontWeight:"bolder", marginLeft:"24px",marginTop:"16px",marginBottom:"16px",padding:"4px",borderRadius:"6px",border:"1px solid black", display:"inline-flex",background:"#000",color:"#fff"}}>
+                style={{fontWeight:"bolder", marginLeft:"24px",marginTop:"16px",padding:"4px",borderRadius:"6px", display:"inline-flex"}}>
                    Basic Information
                 </Typography>
+                <hr style={{width:"96%",border:"1px solid black" }}/>
 
-                </Grid>
-                </Grid>
 
-                <Grid xs={12} style={{marginLeft:"24px"}}>
-                <TextField
+                <Grid   xs={12} style={{marginLeft:"24px",marginTop:"12px",marginBottom:"6px"}}>
+                  
+                <Grid container xs={12} style={{marginTop:"22px"}}>
+
+                  <Grid xs={4}>
+                  <Typography>
+                    Enter Your Name
+                  </Typography>
+
+                  </Grid>
+                  <Grid xs={8}>
+                  <TextField
                     required
                     type="text"
                     name="from_name"
                     label="Enter Name"
-                   value={toSend.from_name}
-                  onChange={handleChange}
-                   
+                    value={toSend.from_name}
+                    onChange={handleChange}
+                    size= "small"
+                    style={{height:"40px", width:"500px",marginRight:"24px"}}
                     />
 
-                </Grid>
-                <br/>
-                <hr style={{width:"96%", }}/>
 
-                <Typography style={{marginLeft:"24px",marginTop:"4px",fontSize:"12px"}}>
-                Please take a few minutes to give us feedback about our service by filling in this short Customer Feedback Form. We are conducting this research in order to measure your level of satisfaction with the quality of our service. We thank you for your participation.
-                </Typography>
+                  </Grid>
+
+                </Grid>
+
+                <Grid container xs={12} style={{marginTop:"22px"}}>
+
+                  <Grid xs={4}>
+                  <Typography>
+                    Enter Your Email
+                  </Typography>
+
+                  </Grid>
+                  <Grid xs={8}>
+                  <TextField
+                    required
+                    type="text"
+                    name="email"
+                    label="Enter Your Email"
+                    value={toSend.email}
+                    onChange={handleChange}
+                    size= "small"
+                    style={{height:"40px", width:"500px",marginRight:"24px"}}
+                    />
+                    </Grid>
+
+                    </Grid>
+
+                 
+
+              
+
+                {/* <Grid xs={12}>
+
+                <TextField
+                    required
+                    type="text"
+                    name="email"
+                    label="Enter Email"
+                    value={toSend.email}
+                    onChange={handleChange}
+                    />
+                </Grid> */}
+
+                {/* <Grid xs={12} md={4}>
+                <TextField
+                    
+                    type="tel"
+                    name="contact"
+                    label="Enter Contact No."
+                    value={toSend.contact}
+                    onChange={handleChange}
+                    />
+                </Grid> */}
+
+              </Grid>
+                    </Grid>
+            </Grid>
+
+               
 
                 <Grid xs={12} style={{marginLeft:"24px"}}>
                 <Typography 
