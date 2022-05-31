@@ -1,17 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-
 import Zoom from '@mui/material/Zoom';
 import Paper from '@mui/material/Paper';
 import {Grid} from '@mui/material';
 import "./feedback.css";
+import AppBaar from './appbar';
+import { FcApproval } from "react-icons/fc";
 
 
 function ScrollTop(props) {
@@ -69,27 +67,50 @@ export default function Thankyou(props) {
    
     return (
         <React.Fragment>
-      <CssBaseline />
-      <AppBar style={{background:"linear-gradient(90deg, rgba(61,61,94,1) 0%, rgba(19,195,219,1) 100%)"}}>
-        <Toolbar>
-          <Typography variant="h6" component="div">
-            FeedBack
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Toolbar id="back-to-top-anchor" />
+     <AppBaar/>
       <Container>
         <Box sx={{ my: 2 }}>
-        <Grid xs={12}>
-             <Typography className='Feedback_head2' >
+        <Grid xs={12} style={{marginTop:"24px"}}>
+             <Typography style={{fontFamily:"monospace",textAlign:"center",fontSize:"24px",marginTop:"15px"}}>
                  CUSTOMER FEEDBACK FORM
              </Typography>
+             
          </Grid>
-            <Paper elevation={3} style={{marginTop:"30px"}}>
-                <Typography style={{marginLeft:"24px",marginTop:"4px",fontSize:"12px"}}>
-                Thank you for providing us with your feedback! It means the world to us.<br/>
-                 Hope to see you again soon! :)
+      <Paper elevation={3} style={{marginTop:"30px",paddingLeft:"16px"}}>
+
+                <Typography style={{fontSize:"126px",fontWeight:"bold",fontFamily:"monospace",textAlign:"center"}}>
+                 
+                    THANK YOU
+                 
                 </Typography>
+
+               
+                    <div style={{textAlign:"center"}}>
+
+		               <FcApproval size={100}  />
+                    </div>
+               
+             <Typography style={{textAlign:"center",fontFamily:"monospace",marginLeft:"24px",marginTop:"8px",fontSize:"22px",justifyContent:"left"}}>
+                Thank you for providing us with your feedback! It means the world to us.<br/>
+                 Hope to see you again soon! 
+                  
+                </Typography> 
+
+                 {/* <Typography style={{fontFamily:"monospace",marginLeft:"24px",marginTop:"4px",padding:"0 20px 20px 20px",fontSize:"22px",justifyContent:"left"}}>
+
+                 As your given feedback and for better experience, we will look forward to hearing from you <br/>
+                  and trying to improve our services and supports.
+
+                 
+                 </Typography>  */}
+
+                <Typography style={{marginTop:"22px",marginLeft:"10px",textAlign:"left"}}>
+                Thanks.
+
+                <br/>
+                IMZ Corporate Pvt Ltd.
+                </Typography>
+
         </Paper>
 
          

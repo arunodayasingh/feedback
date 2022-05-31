@@ -1,15 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
-import logo from './images/logo.png';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
 import Paper from '@mui/material/Paper';
@@ -25,7 +21,10 @@ import { send } from 'emailjs-com';
 import Button from "@mui/material/Button";
 import Swal from 'sweetalert2';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import Appbaar from "./appbar";
+// import Loader from "react-loader-spinner";
+import LoadingSpinner from './loadingSpinner';
 
 
 function ScrollTop(props) {
@@ -95,6 +94,8 @@ export default function BackToTop(props) {
         reply_to: 'arunodaya.singh@imzcorporate.com',
       });
 
+      const [isLoading,setIsLoading] = useState(false);
+
 
       let navigate = useNavigate();
 
@@ -105,12 +106,18 @@ export default function BackToTop(props) {
 
 
       const onSubmit = (e) => {
+        
           if(toSend.from_name.trim() === ""){
-            alert("please enter your name!")
+            alert("please enter your name !")
+              return false;
+          }
+          if(toSend.email.trim() === ""){
+            alert("please enter your email !")
               return false;
           }
 
         e.preventDefault();
+        setIsLoading(true);
         send(
           'service_388b8kh',
           'template_woyfrj8',
@@ -118,47 +125,25 @@ export default function BackToTop(props) {
           'AQXbDZiV7yU_PeLZu'
         )
           .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
-              navigate("./thankyou")
+            // console.log('SUCCESS!', response.status, response.text);
+            setIsLoading(false);
+            navigate("./thankyou")
               
           })
           .catch((err) => {
-            console.log('FAILED...', err);
+            // console.log('FAILED...', err);
             Swal.fire({
               icon: 'error',
               title: 'Ooops, something went wrong',
-             
+              
             })
+            setIsLoading(false);
           });
       };
 
     return (
         <React.Fragment>
-      <CssBaseline />
-      <AppBar style={{background:"#9DECF4"}}>
-        <Toolbar>
-          <Grid container  xs={12}>
-
-                <Grid xs={4}>
-                <Typography >
-                  <img src={logo} style={{height:"50px",width:"120px",marginTop:"6px"}} alt=""/>
-                <Typography style={{fontSize:"8px",color:"#000"}}>
-                      SECURE | ANALYSE | OPTIMIZE
-                </Typography>
-                </Typography>
-
-                </Grid>
-
-               
-
-             
-
-
-          </Grid>
-          
-        </Toolbar>
-      </AppBar>
-      <Toolbar id="back-to-top-anchor" />
+          <Appbaar/>
       <Container>
         <Box sx={{ my: 2 }}>
         <Grid xs={12} style={{marginTop:"24px"}}>
@@ -167,126 +152,125 @@ export default function BackToTop(props) {
              </Typography>
              
          </Grid>
-      <Paper elevation={3} style={{marginTop:"30px"}}>
+      <Paper elevation={3} style={{marginTop:"30px",paddingLeft:"16px"}}>
 
-                <Grid xs={12} style={{marginTop:"16px"}}>
-
-
-                <Typography style={{paddingTop:"12px",marginLeft:"24px",marginBottom:"4px",fontSize:"12px"}}>
-                Please take a few minutes to give us feedback about our service by filling in this short Customer Feedback Form. We are conducting this research in order to measure your level of satisfaction with the quality of our service. We thank you for your participation.
-                </Typography>
-                </Grid>
-                <hr style={{width:"97%",paddingLeft:"24px" }}/>
-
+               
                 <Grid
                  xs={12}
                  container
                  direction="row"
                  justifyContent="flex-start"
                  alignItems="flex-start"
-                 style={{borderBottom:"1px solid black"}}
+                
                  >
-                <Grid xs={12} >
+                <Grid xs={12} style={{marginLeft:"24px"}}>
                   
                 <Typography 
-                style={{fontWeight:"bolder", marginLeft:"24px",marginTop:"16px",padding:"4px",borderRadius:"6px", display:"inline-flex"}}>
-                   Basic Information
+                style={{fontWeight:"bolder",marginTop:"16px",borderRadius:"6px",display:"inline-flex"}}>
+                  Customer Information
                 </Typography>
-                <hr style={{width:"96%",border:"1px solid black" }}/>
+                <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
 
 
-                <Grid   xs={12} style={{marginLeft:"24px",marginTop:"12px",marginBottom:"6px"}}>
+                <Grid container  xs={12} md={12} style={{marginTop:"12px",marginBottom:"6px"}}>
                   
-                <Grid container xs={12} style={{marginTop:"22px"}}>
+                <Grid  xs={12} md={4} style={{marginTop:"26px"}}>
 
-                  <Grid xs={4}>
+                  <Grid  xs={12} md={4}>
                   <Typography>
-                    Enter Your Name
+                    Enter Name *
                   </Typography>
 
                   </Grid>
-                  <Grid xs={8}>
+                  <Grid xs={12} md={4}>
                   <TextField
                     required
                     type="text"
                     name="from_name"
-                    label="Enter Name"
+                    placeholder="Name"
                     value={toSend.from_name}
                     onChange={handleChange}
                     size= "small"
-                    style={{height:"40px", width:"500px",marginRight:"24px"}}
+                    style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px"}}
                     />
-
 
                   </Grid>
 
                 </Grid>
 
-                <Grid container xs={12} style={{marginTop:"22px"}}>
+                <Grid  xs={12} md={4} style={{marginTop:"26px"}}>
 
-                  <Grid xs={4}>
-                  <Typography>
-                    Enter Your Email
-                  </Typography>
+                      <Grid xs={12} md={4}>
+                        <Typography>
+                          Enter Email *
+                        </Typography>
+                      </Grid>
 
-                  </Grid>
-                  <Grid xs={8}>
-                  <TextField
-                    required
-                    type="text"
-                    name="email"
-                    label="Enter Your Email"
-                    value={toSend.email}
-                    onChange={handleChange}
-                    size= "small"
-                    style={{height:"40px", width:"500px",marginRight:"24px"}}
-                    />
+                      <Grid xs={12} md={4}>
+                      <TextField
+                        required
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        value={toSend.email}
+                        onChange={handleChange}
+                        size= "small"
+                        style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px"}}
+                        />
+
+                      </Grid>
                     </Grid>
 
-                    </Grid>
+                    <Grid  xs={12} md={4} style={{marginTop:"26px"}}>
 
-                 
+                        <Grid xs={12} md={4}>
+                          <Typography>
+                            Enter Contact
+                          </Typography>
+                        </Grid>
 
-              
+                        <Grid xs={12} md={4}>
+                        <TextField
+                          required
+                          type="tel"
+                          name="contact"
+                          placeholder="Number"
+                          value={toSend.contact}
+                          onChange={handleChange}
+                          size= "small"
+                          style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px"}}
+                          />
 
-                {/* <Grid xs={12}>
+                        </Grid>
 
-                <TextField
-                    required
-                    type="text"
-                    name="email"
-                    label="Enter Email"
-                    value={toSend.email}
-                    onChange={handleChange}
-                    />
-                </Grid> */}
-
-                {/* <Grid xs={12} md={4}>
-                <TextField
-                    
-                    type="tel"
-                    name="contact"
-                    label="Enter Contact No."
-                    value={toSend.contact}
-                    onChange={handleChange}
-                    />
-                </Grid> */}
+                        </Grid>
 
               </Grid>
                     </Grid>
             </Grid>
 
+          <hr style={{width:"96%",textAlign:"center",paddingLeft:"26px",marginTop:"22px"}}/>
+            <Grid xs={12} style={{marginTop:"16px"}}>
+
+
+          <Typography style={{paddingTop:"12px",marginLeft:"24px",marginBottom:"4px",fontSize:"12px"}}>
+          Please take a few minutes to give us feedback about our service by filling in this short Customer Feedback Form. We are conducting this research in order to measure your level of satisfaction with the quality of our service. We thank you for your participation.
+          </Typography>
+          </Grid>
+
+
                
 
                 <Grid xs={12} style={{marginLeft:"24px"}}>
                 <Typography 
-                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"16px",padding:"4px",borderRadius:"6px",border:"1px solid black", display:"inline-flex",background:"#000",color:"#fff"}}>
+                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"4px",display:"inline-flex",}}>
 
                     Overall experience with our service
-                   </Typography>
-               
-            
-                <Grid xs={12}>
+                </Typography>
+                <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
+
+            <Grid xs={6} md={12} style={{marginTop:"16px"}}>
+
                 <FormControl>
       <FormLabel id="demo-row-radio-buttons-group-label">How would you rate your overall experience with our service?</FormLabel>
       <RadioGroup
@@ -306,7 +290,7 @@ export default function BackToTop(props) {
        
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">How would you rate the courtesy & efficiency of Service agent?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>How would you rate the courtesy & efficiency of Service agent?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -329,18 +313,20 @@ export default function BackToTop(props) {
 
 
 {/* feedback    */}
-    <Grid xs={12} style={{marginLeft:"24px"}}>
-    <Typography 
-                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"16px",padding:"4px",borderRadius:"6px",border:"1px solid black", display:"inline-flex",
-                background:"#000",color:"#fff"}}>
+<Grid xs={12} style={{marginLeft:"24px"}}>
+                <Typography 
+                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"4px",display:"inline-flex",}}>
 
-                    Feedback Information
+Feedback Information
                     </Typography>
+                <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
+
+                   
                
             
-                <Grid xs={12}>
+                <Grid xs={12} style={{marginTop:"16px"}}>
                 <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label">Did we appropriately respond to your customers service needs today?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Did we appropriately respond to your customers service needs today?</FormLabel>
       <RadioGroup
        row
        aria-labelledby="demo-row-radio-buttons-group-label"
@@ -355,7 +341,7 @@ export default function BackToTop(props) {
         <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">Did you receive the service, information, or help you needed?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Did you receive the service, information, or help you needed?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -370,7 +356,7 @@ export default function BackToTop(props) {
         <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">Were you treated in a courteous and considerate manner?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Were you treated in a courteous and considerate manner?</FormLabel>
       <RadioGroup
          row
          aria-labelledby="demo-row-radio-buttons-group-label"
@@ -385,11 +371,11 @@ export default function BackToTop(props) {
         <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">Was service provided in a timely manner?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Was service provided in a timely manner?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
-        type= "radio"
+        type= "radio" 
         name="value6"
        value= {toSend.value6}
       onChange={handleChange}
@@ -399,7 +385,7 @@ export default function BackToTop(props) {
         <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">Were you satisfied with your overall service experience?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Were you satisfied with your overall service experience?</FormLabel>
       <RadioGroup
          row
          aria-labelledby="demo-row-radio-buttons-group-label"
@@ -414,7 +400,7 @@ export default function BackToTop(props) {
         <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">Would you use our customer service in the future?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Would you use our customer service in the future?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -433,15 +419,15 @@ export default function BackToTop(props) {
     </FormControl>
     
 
-    <Grid xs={12} style={{marginTop:"16px"}}>
+    <Grid xs={6} md={12} style={{marginTop:"16px"}}>
 
         <Typography>
             <h5>What should we change in order to live up to your expectations?</h5>
             <TextareaAutosize
             aria-label="minimum height"
             minRows={5}
-            placeholder="please share your message."
-            style={{ width: 450 }}
+            placeholder="please share your feedback."
+            style={{ width: 380 }}
             name="message"
             value={toSend.message}
             onChange={handleChange}
@@ -455,13 +441,18 @@ export default function BackToTop(props) {
 
         <Grid xs={12} style={{paddingLeft:"24px",paddingTop:"8px",paddingBottom:"10px"}}>
 
+        {isLoading? <LoadingSpinner /> :"" }
             <Button type="button" 
             variant="contained"
-
-            onClick={onSubmit}>
+            onClick={onSubmit}
+            disabled={isLoading}
+            >
                 Submit FeedBack
             </Button>
-          </Grid>
+           
+         
+
+                      </Grid>
         </Paper>
 
          
