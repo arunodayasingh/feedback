@@ -1,30 +1,18 @@
 import * as React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@mui/material/Typography';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Fab from '@mui/material/Fab';
+import {Typography,useScrollTrigger} from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Zoom from '@mui/material/Zoom';
-import Paper from '@mui/material/Paper';
-import {Grid} from '@mui/material';
-import TextField from '@mui/material/TextField';
+import {Paper,Zoom,Container,Box} from '@mui/material';
+import {Grid,TextField,Radio,RadioGroup,FormControlLabel,FormLabel,FormControl,Button,Fab} from '@mui/material';
 import "./feedback.css";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import { send } from 'emailjs-com';
-import Button from "@mui/material/Button";
 import Swal from 'sweetalert2';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { useNavigate} from "react-router-dom";
 import Appbaar from "./appbar";
 // import Loader from "react-loader-spinner";
 import LoadingSpinner from './loadingSpinner';
+
 
 
 function ScrollTop(props) {
@@ -79,7 +67,7 @@ export default function BackToTop(props) {
 
     const [toSend, setToSend] = useState({
         from_name: '',
-        to_name: 'arunodaya',
+        to_name: 'Customer Support ',
         email: '',
         contact: '',
         message: '',
@@ -91,7 +79,7 @@ export default function BackToTop(props) {
         value6: '',
         value7: '',
         value8: '',
-        reply_to: 'arunodaya.singh@imzcorporate.com',
+        reply_to: 'customer.support@imzcorporate.com',
       });
 
       const [isLoading,setIsLoading] = useState(false);
@@ -163,26 +151,27 @@ export default function BackToTop(props) {
                  alignItems="flex-start"
                 
                  >
-                <Grid xs={12} style={{marginLeft:"24px"}}>
-                  
+             
+             <Grid xs={12} style={{marginLeft:"24px"}}>
                 <Typography 
-                style={{fontWeight:"bolder",marginTop:"16px",borderRadius:"6px",display:"inline-flex"}}>
+                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"4px",display:"inline-flex",}}>
+
                   Customer Information
                 </Typography>
                 <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
 
 
-                <Grid container  xs={12} md={12} style={{marginTop:"12px",marginBottom:"6px"}}>
+                <Grid container xs={12} md={12} lg={12} style={{marginTop:"12px",marginBottom:"6px"}}>
                   
-                <Grid  xs={12} md={4} style={{marginTop:"26px"}}>
+                <Grid  xs={8} md={6} lg={4} style={{marginTop:"26px",}}>
 
-                  <Grid  xs={12} md={4}>
+                  <Grid  xs={12} md={6} >
                   <Typography>
                     Enter Name *
                   </Typography>
 
                   </Grid>
-                  <Grid xs={12} md={4}>
+                  <Grid xs={12} md={6} >
                   <TextField
                     required
                     type="text"
@@ -190,23 +179,28 @@ export default function BackToTop(props) {
                     placeholder="Name"
                     value={toSend.from_name}
                     onChange={handleChange}
-                    size= "small"
-                    style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px"}}
+                    style ={{width: '100%',paddingRight:"16px"}}
+                    InputProps={{ style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
+                    // style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px",display:""}}
+                  
+                   
+                    
                     />
 
                   </Grid>
 
                 </Grid>
 
-                <Grid  xs={12} md={4} style={{marginTop:"26px"}}>
 
-                      <Grid xs={12} md={4}>
+                <Grid  xs={8} md={6}  lg={4} style={{marginTop:"26px"}}>
+
+                      <Grid xs={12} md={6} lg={6}>
                         <Typography>
                           Enter Email *
                         </Typography>
                       </Grid>
 
-                      <Grid xs={12} md={4}>
+                      <Grid xs={12} md={6} lg={6}>
                       <TextField
                         required
                         type="text"
@@ -214,31 +208,31 @@ export default function BackToTop(props) {
                         placeholder="Email"
                         value={toSend.email}
                         onChange={handleChange}
-                        size= "small"
-                        style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px"}}
+                        style ={{width: '100%',paddingRight:"16px"}}
+                        InputProps={{ style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
                         />
 
                       </Grid>
                     </Grid>
 
-                    <Grid  xs={12} md={4} style={{marginTop:"26px"}}>
+                    <Grid  xs={8} md={6} lg={4} style={{marginTop:"26px",}}>
 
-                        <Grid xs={12} md={4}>
+                        <Grid xs={12} md={6}>
                           <Typography>
                             Enter Contact
                           </Typography>
                         </Grid>
 
-                        <Grid xs={12} md={4}>
+                        <Grid xs={12} md={6} >
                         <TextField
                           required
                           type="tel"
                           name="contact"
-                          placeholder="Number"
+                          placeholder="Contact No."
                           value={toSend.contact}
                           onChange={handleChange}
-                          size= "small"
-                          style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px"}}
+                          style ={{width: '100%',paddingRight:"16px"}}
+                          InputProps={{ style: { fontSize: 15,width:"150%"} }}
                           />
 
                         </Grid>
@@ -269,7 +263,7 @@ export default function BackToTop(props) {
                 </Typography>
                 <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
 
-            <Grid xs={6} md={12} style={{marginTop:"16px"}}>
+            <Grid xs={12} md={12} style={{marginTop:"16px"}}>
 
                 <FormControl>
       <FormLabel id="demo-row-radio-buttons-group-label">How would you rate your overall experience with our service?</FormLabel>
@@ -282,11 +276,11 @@ export default function BackToTop(props) {
       onChange={handleChange}
 
       >
-        <FormControlLabel value="very good" control={<Radio />} label="Very Good" />
-        <FormControlLabel value="good" control={<Radio />} label="Good" />
-        <FormControlLabel value="fair" control={<Radio />} label="Fair" />
-        <FormControlLabel value="poor" control={<Radio />} label="Poor" />
-        <FormControlLabel value="very poor" control={<Radio />} label="Very Poor" />
+       
+        <FormControlLabel value="Good" control={<Radio />} label="Good" />
+        <FormControlLabel value="Average" control={<Radio />} label="Fair" />
+        <FormControlLabel value="Poor" control={<Radio />} label="Poor" />
+        
        
       </RadioGroup>
 
@@ -299,11 +293,9 @@ export default function BackToTop(props) {
        value= {toSend.value2}
       onChange={handleChange}
       >
-        <FormControlLabel value="very good" control={<Radio />} label="Very Good" />
-        <FormControlLabel value="good" control={<Radio />} label="Good" />
-        <FormControlLabel value="fair" control={<Radio />} label="Fair" />
-        <FormControlLabel value="poor" control={<Radio />} label="Poor" />
-        <FormControlLabel value="very poor" control={<Radio />} label="Very Poor" />
+         <FormControlLabel value="Good" control={<Radio />} label="Good" />
+        <FormControlLabel value="Average" control={<Radio />} label="Fair" />
+        <FormControlLabel value="Poor" control={<Radio />} label="Poor" />
        
       </RadioGroup>
     </FormControl>
@@ -417,22 +409,33 @@ Feedback Information
 
 
     </FormControl>
-    
+  
 
-    <Grid xs={6} md={12} style={{marginTop:"16px"}}>
+    <Grid xs={12} md={12} style={{marginTop:"16px",marginBottom:"8px"}}>
+        <Grid xs={12} md={12}>
 
         <Typography>
             <h5>What should we change in order to live up to your expectations?</h5>
-            <TextareaAutosize
+        </Typography>
+        </Grid>
+
+        <Grid xs={12} md={12} >
+        
+            <TextField
             aria-label="minimum height"
-            minRows={5}
+           
             placeholder="please share your feedback."
-            style={{ width: 380 }}
+            style ={{width: '100%',paddingRight:"16px"}}
+            InputProps={{ style: { fontSize: 15,width:"75%" } }}
+            multiLine={true}
+            rows={4}
+            
             name="message"
             value={toSend.message}
             onChange={handleChange}
           />
-        </Typography>
+          </Grid>
+       
     </Grid>
 
                     

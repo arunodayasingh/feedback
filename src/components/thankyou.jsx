@@ -70,15 +70,17 @@ export default function Thankyou(props) {
      <AppBaar/>
       <Container>
         <Box sx={{ my: 2 }}>
-        <Grid xs={12} style={{marginTop:"24px"}}>
+        <Grid xs={12} style={{marginTop:"34px"}}>
              <Typography style={{fontFamily:"monospace",textAlign:"center",fontSize:"24px",marginTop:"15px"}}>
                  CUSTOMER FEEDBACK FORM
              </Typography>
              
          </Grid>
-      <Paper elevation={3} style={{marginTop:"30px",paddingLeft:"16px"}}>
+      <Paper elevation={3} style={{marginTop:"35px",paddingLeft:"16px"}}>
 
-                <Typography style={{fontSize:"126px",fontWeight:"bold",fontFamily:"monospace",textAlign:"center"}}>
+                <Typography style={{fontSize:"80px",fontWeight:"bold",fontFamily:"monospace",textAlign:"center",}}
+                
+                >
                  
                     THANK YOU
                  
