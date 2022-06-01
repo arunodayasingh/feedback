@@ -20,9 +20,9 @@ const AppBaar = () => {
                 <Grid xs={4}>
                 <Typography >
                   <img src={logo} style={{height:"50px",width:"120px",marginTop:"6px"}} alt=""/>
-                <Typography style={{fontSize:"8px",color:"#000",fontWeight:"bold"}}>
-                      SECURE | ANALYSE | OPTIMIZE
-                </Typography>
+                    <Typography style={{fontSize:"8px",color:"#000",fontWeight:"bold"}}>
+                          SECURE | ANALYSE | OPTIMIZE
+                    </Typography>
                 </Typography>
 
                 </Grid>

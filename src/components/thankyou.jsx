@@ -10,6 +10,7 @@ import {Grid} from '@mui/material';
 import "./feedback.css";
 import AppBaar from './appbar';
 import { FcApproval } from "react-icons/fc";
+import logo from "./images/logo.png"
 
 
 function ScrollTop(props) {
@@ -110,7 +111,12 @@ export default function Thankyou(props) {
                 Thanks.
 
                 <br/>
-                IMZ Corporate Pvt Ltd.
+                <Typography >
+                  <img src={logo} style={{height:"30px",width:"80px",marginTop:"6px"}} alt=""/>
+                    <Typography style={{fontSize:"6px",color:"#000",fontWeight:"bold"}}>
+                          SECURE | ANALYSE | OPTIMIZE
+                    </Typography>
+                </Typography>
                 </Typography>
 
         </Paper>

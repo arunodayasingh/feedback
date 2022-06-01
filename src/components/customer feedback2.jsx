@@ -182,9 +182,6 @@ export default function BackToTop(props) {
                     style ={{width: '100%',paddingRight:"16px"}}
                     InputProps={{ style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
                     // style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px",display:""}}
-                  
-                   
-                    
                     />
 
                   </Grid>
@@ -278,7 +275,7 @@ export default function BackToTop(props) {
       >
        
         <FormControlLabel value="Good" control={<Radio />} label="Good" />
-        <FormControlLabel value="Average" control={<Radio />} label="Fair" />
+        <FormControlLabel value="Average" control={<Radio />} label="Average" />
         <FormControlLabel value="Poor" control={<Radio />} label="Poor" />
         
        
@@ -294,7 +291,7 @@ export default function BackToTop(props) {
       onChange={handleChange}
       >
          <FormControlLabel value="Good" control={<Radio />} label="Good" />
-        <FormControlLabel value="Average" control={<Radio />} label="Fair" />
+        <FormControlLabel value="Average" control={<Radio />} label="Average" />
         <FormControlLabel value="Poor" control={<Radio />} label="Poor" />
        
       </RadioGroup>
@@ -400,7 +397,6 @@ Feedback Information
         name="value8"
        value= {toSend.value8}
       onChange={handleChange}
-
       >
         <FormControlLabel value="yes" control={<Radio />} label="Yes" />
         <FormControlLabel value="no" control={<Radio />} label="No" />
