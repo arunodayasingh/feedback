@@ -13,6 +13,9 @@ import Appbaar from "./appbar";
 // import Loader from "react-loader-spinner";
 import LoadingSpinner from './loadingSpinner';
 
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 function ScrollTop(props) {
@@ -407,15 +410,15 @@ Feedback Information
     </FormControl>
   
 
-    <Grid xs={12} md={12} style={{marginTop:"16px",marginBottom:"8px"}}>
-        <Grid xs={12} md={12}>
+    <Grid  xs={8} md={6} lg={4} >
+        <Grid xs={8} md={12}  lg={4} >
 
         <Typography>
             <h5>What should we change in order to live up to your expectations?</h5>
         </Typography>
         </Grid>
 
-        <Grid xs={12} md={12} >
+        <Grid xs={8} md={5} lg={6} >
         
             <TextField
             aria-label="minimum height"
@@ -438,9 +441,17 @@ Feedback Information
         </Grid>
     </Grid>
 
-        <Grid xs={12} style={{paddingLeft:"24px",paddingTop:"8px",paddingBottom:"10px"}}>
+        <Grid xs={12} style={{paddingLeft:"24px",paddingTop:"28px",paddingBottom:"16px"}}>
 
-        {isLoading? <LoadingSpinner /> :"" }
+   {/* for laoding spinner */}
+        {/* {isLoading? <LoadingSpinner /> :"" } */}
+
+        {isLoading? <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop> :"" }
             <Button type="button" 
             variant="contained"
             onClick={onSubmit}
