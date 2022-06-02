@@ -4,9 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import logo from './images/logo.png';
-
 import {Grid} from '@mui/material';
-
 import "./feedback.css";
 
 const AppBaar = () => {

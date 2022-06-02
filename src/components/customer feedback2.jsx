@@ -11,8 +11,7 @@ import Swal from 'sweetalert2';
 import { useNavigate} from "react-router-dom";
 import Appbaar from "./appbar";
 // import Loader from "react-loader-spinner";
-import LoadingSpinner from './loadingSpinner';
-
+// import LoadingSpinner from './loadingSpinner';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -67,6 +66,7 @@ ScrollTop.propTypes = {
 
 
 export default function BackToTop(props) {
+
 
     const [toSend, setToSend] = useState({
         from_name: '',
@@ -166,9 +166,9 @@ export default function BackToTop(props) {
 
                 <Grid container xs={12} md={12} lg={12} style={{marginTop:"12px",marginBottom:"6px"}}>
                   
-                <Grid  xs={8} md={6} lg={4} style={{marginTop:"26px",}}>
+                <Grid  xs={8} md={6} lg={4} style={{marginTop:"16px",}}>
 
-                  <Grid  xs={12} md={6} >
+                  <Grid  xs={12} md={6} style={{marginBottom:"6px"}} >
                   <Typography>
                     Enter Name *
                   </Typography>
@@ -192,9 +192,9 @@ export default function BackToTop(props) {
                 </Grid>
 
 
-                <Grid  xs={8} md={6}  lg={4} style={{marginTop:"26px"}}>
+                <Grid  xs={8} md={6}  lg={4} style={{marginTop:"16px"}}>
 
-                      <Grid xs={12} md={6} lg={6}>
+                      <Grid xs={12} md={6} lg={6}  style={{marginBottom:"6px"}}>
                         <Typography>
                           Enter Email *
                         </Typography>
@@ -215,9 +215,9 @@ export default function BackToTop(props) {
                       </Grid>
                     </Grid>
 
-                    <Grid  xs={8} md={6} lg={4} style={{marginTop:"26px",}}>
+                    <Grid  xs={8} md={6} lg={4} style={{marginTop:"16px",}}>
 
-                        <Grid xs={12} md={6}>
+                        <Grid xs={12} md={6}  style={{marginBottom:"6px"}}>
                           <Typography>
                             Enter Contact
                           </Typography>
@@ -410,28 +410,29 @@ Feedback Information
     </FormControl>
   
 
-    <Grid  xs={8} md={6} lg={4} >
-        <Grid xs={8} md={12}  lg={4} >
+    <Grid  xs={8} md={6} lg={12} >
+        <Grid xs={12} md={12} lg={12}>
 
-        <Typography>
-            <h5>What should we change in order to live up to your expectations?</h5>
-        </Typography>
+        <Typography 
+                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"12px",display:"inline-flex",}}>
+
+                  Leave Your Message 
+                </Typography>
+                {/* <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/> */}
         </Grid>
 
-        <Grid xs={8} md={5} lg={6} >
+        <Grid className="feedback-box" xs={8} md={6}>
         
             <TextField
-            aria-label="minimum height"
-           
-            placeholder="please share your feedback."
-            style ={{width: '100%',paddingRight:"16px"}}
-            InputProps={{ style: { fontSize: 15,width:"75%" } }}
-            multiLine={true}
-            rows={4}
-            
+            type="text"
             name="message"
             value={toSend.message}
             onChange={handleChange}
+            multiline
+            rows={3}
+            placeholder="please share your feedback."
+            style ={{width: '100%',paddingRight:"16px",textAlign:"left"}}
+            InputProps={{ style: {fontSize: 15,} }}   
           />
           </Grid>
        

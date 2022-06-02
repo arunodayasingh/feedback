@@ -1,5 +1,3 @@
-
-
 .Feedback_head{
     text-align: center;
     padding: 10px 0 10px 0;
@@ -35,3 +33,8 @@ font-size: 24px;
     animation: spinner 1.5s linear infinite;
   }
 
+@media only screen and (min-width: 600px){
+    .feedback-box {
+      width: 50%;
+    }
+  }
