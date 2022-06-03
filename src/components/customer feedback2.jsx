@@ -137,8 +137,8 @@ export default function BackToTop(props) {
           <Appbaar/>
       <Container>
         <Box sx={{ my: 2 }}>
-        <Grid xs={12} style={{marginTop:"24px"}}>
-             <Typography style={{fontFamily:"monospace",textAlign:"center",fontSize:"24px",marginTop:"15px"}}>
+        <Grid  xs={12} style={{marginTop:"24px"}}>
+             <Typography className="head1" style={{fontFamily:"monospace",textAlign:"center",fontSize:"24px",marginTop:"15px"}}>
                  CUSTOMER FEEDBACK FORM
              </Typography>
              
@@ -155,7 +155,7 @@ export default function BackToTop(props) {
                 
                  >
              
-             <Grid xs={12} style={{marginLeft:"24px"}}>
+             <Grid  xs={12} style={{marginLeft:"24px"}}>
                 <Typography 
                 style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"4px",display:"inline-flex",}}>
 

@@ -15,10 +15,12 @@ const AppBaar = () => {
         <Toolbar>
           <Grid container  xs={12}>
 
-                <Grid xs={4}>
+                <Grid xs={12}>
                 <Typography >
                   <img src={logo} style={{height:"50px",width:"120px",marginTop:"6px"}} alt=""/>
+                  
                     <Typography style={{fontSize:"8px",color:"#000",fontWeight:"bold"}}>
+
                           SECURE | ANALYSE | OPTIMIZE
                     </Typography>
                 </Typography>
