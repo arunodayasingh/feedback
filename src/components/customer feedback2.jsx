@@ -414,9 +414,9 @@ Feedback Information
         <Grid xs={12} md={12} lg={12}>
 
         <Typography 
-                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"12px",display:"inline-flex",}}>
+                style={{fontWeight:"bolder",display:"inline-flex",}}>
 
-                  Leave Your Message 
+                  <h5>What should we change in order to live up to your expectations?</h5>
                 </Typography>
                 {/* <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/> */}
         </Grid>
@@ -444,7 +444,7 @@ Feedback Information
 
         <Grid xs={12} style={{paddingLeft:"24px",paddingTop:"28px",paddingBottom:"16px"}}>
 
-   {/* for laoding spinner */}
+   {/* for loading spinner */}
         {/* {isLoading? <LoadingSpinner /> :"" } */}
 
         {isLoading? <Backdrop
@@ -460,11 +460,8 @@ Feedback Information
             >
                 Submit FeedBack
             </Button>
-           
-         
-
-                      </Grid>
-        </Paper>
+        </Grid>
+      </Paper>
 
          
         </Box>
