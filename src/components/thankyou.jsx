@@ -79,41 +79,39 @@ export default function Thankyou(props) {
          </Grid>
       <Paper elevation={3} style={{marginTop:"35px",paddingLeft:"16px"}}>
 
-                <Typography style={{fontSize:"80px",fontWeight:"bold",fontFamily:"monospace",textAlign:"center",}}
-                
-                >
-                 
-                    THANK YOU
-                 
+                <Typography className='thankhead' style={{textAlign:"center", fontSize:"80px",fontWeight:"bold",fontFamily:"monospace",paddingRight:"10px"}}>
+              
+                    THANK  YOU
+
                 </Typography>
 
                
                     <div style={{textAlign:"center"}}>
 
-		               <FcApproval size={100}  />
+		                  <FcApproval size={100}  />
                     </div>
                
-             <Typography style={{textAlign:"center",fontFamily:"monospace",marginLeft:"24px",marginTop:"8px",fontSize:"22px",justifyContent:"left"}}>
+              <Typography className='thankhead2' style={{textAlign:"justify",fontFamily:"monospace",marginLeft:"24px",marginRight:"24px",marginTop:"8px",fontSize:"22px",justifyContent:"left"}}>
                 Thank you for providing us with your feedback! It means the world to us.<br/>
-                 Hope to see you again soon! 
+                Hope to see you again soon! 
                   
-                </Typography> 
+              </Typography> 
 
-                 {/* <Typography style={{fontFamily:"monospace",marginLeft:"24px",marginTop:"4px",padding:"0 20px 20px 20px",fontSize:"22px",justifyContent:"left"}}>
+                 {/* <Typography style={{textAlign:"justify",fontFamily:"monospace",marginLeft:"24px",marginRight:"24px",marginTop:"8px",fontSize:"22px",justifyContent:"left"}}>
 
-                 As your given feedback and for better experience, we will look forward to hearing from you <br/>
+                 As your given feedback and for better experience, <br/> we will look forward to hearing from you <br/>
                   and trying to improve our services and supports.
 
                  
                  </Typography>  */}
 
-                <Typography style={{marginTop:"22px",marginLeft:"10px",textAlign:"left"}}>
+                <Typography  style={{marginTop:"22px",marginLeft:"24px",textAlign:"left"}}>
                 Thanks.
 
                 <br/>
                 <Typography >
                   <img src={logo} style={{height:"30px",width:"80px",marginTop:"6px"}} alt=""/>
-                    <Typography style={{fontSize:"6px",color:"#000",fontWeight:"bold"}}>
+                    <Typography style={{fontSize:"8px",color:"#000",fontWeight:"bold"}}>
                           SECURE | ANALYSE | OPTIMIZE
                     </Typography>
                 </Typography>

@@ -14,7 +14,9 @@ import Appbaar from "./appbar";
 // import LoadingSpinner from './loadingSpinner';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import validator from 'validator';
 
 
 function ScrollTop(props) {
@@ -64,6 +66,11 @@ ScrollTop.propTypes = {
 };
 
 
+const labels = {
+  1: 'Exceptionally Well',
+  2: 'Adequately Well',
+  3: 'Not Well',
+};
 
 export default function BackToTop(props) {
 
@@ -86,26 +93,52 @@ export default function BackToTop(props) {
       });
 
       const [isLoading,setIsLoading] = useState(false);
-
-
+      const [emailError, setEmailError] = useState(false)
+      const [validEmail, setValidEmail] = useState(false)
+      const [nameError, setNameError] = useState(false)
+     
       let navigate = useNavigate();
 
       const handleChange = (e) => {
         setToSend({ ...toSend, [e.target.name]: e.target.value });
-      };
-    
-
+      }; 
+      
+      
+      
+      
+      const emailRegex = /\S+@\S+\.\S+/;
 
       const onSubmit = (e) => {
+
+        let email = e.target.value;
+
         
-          if(toSend.from_name.trim() === ""){
-            alert("please enter your name !")
-              return false;
+          if(toSend.from_name.trim() == "" ){
+            toast.error("Name cannot be empty");
+            setNameError(true);
+            return false;
           }
-          if(toSend.email.trim() === ""){
-            alert("please enter your email !")
-              return false;
+          
+          else if(toSend.email.trim() == ""){
+            toast.error("Email cannot be empty");
+            setEmailError(true);
+            return false;
           }
+
+          else if(toSend.from_name.trim() !== "" && toSend.email.trim() == "" ){
+            toast.error("Email cannot be empty");
+            setEmailError(true);
+            setNameError(false)
+            return false;
+          }
+          else if(!emailRegex.test(toSend.email))
+          {
+            setValidEmail(true);
+            toast.error("Email not valid");
+            return false;
+          }
+
+        
 
         e.preventDefault();
         setIsLoading(true);
@@ -180,14 +213,20 @@ export default function BackToTop(props) {
                     type="text"
                     name="from_name"
                     placeholder="Name"
+                    error={!emailError && nameError }
+                    helperText={nameError && !emailError && "Please enter your name"}
                     value={toSend.from_name}
                     onChange={handleChange}
+
+                    inputProps={{
+                      maxLength: 20
+                    }}
                     style ={{width: '100%',paddingRight:"16px"}}
                     InputProps={{ style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
                     // style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px",display:""}}
                     />
-
                   </Grid>
+                  {nameError &&  <ToastContainer autoClose={false} />}
 
                 </Grid>
 
@@ -201,17 +240,21 @@ export default function BackToTop(props) {
                       </Grid>
 
                       <Grid xs={12} md={6} lg={6}>
+                     
                       <TextField
                         required
                         type="text"
+                        error={emailError}
+                        helperText={emailError && !validEmail ? "Please enter your email": validEmail?"Please enter valid email": ""}
                         name="email"
                         placeholder="Email"
                         value={toSend.email}
                         onChange={handleChange}
+                        maxLength={28}
                         style ={{width: '100%',paddingRight:"16px"}}
-                        InputProps={{ style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
+                        InputProps={{ maxlength: 10,style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
                         />
-
+                      {emailError &&   <ToastContainer autoClose={false} />}
                       </Grid>
                     </Grid>
 
@@ -230,9 +273,10 @@ export default function BackToTop(props) {
                           name="contact"
                           placeholder="Contact No."
                           value={toSend.contact}
+                         
                           onChange={handleChange}
                           style ={{width: '100%',paddingRight:"16px"}}
-                          InputProps={{ style: { fontSize: 15,width:"150%"} }}
+                          InputProps={{ maxlength: 10,style: { fontSize: 15,width:"150%",maxLength:10} }}
                           />
 
                         </Grid>
@@ -252,6 +296,45 @@ export default function BackToTop(props) {
           </Typography>
           </Grid>
 
+          <Grid xs={12} style={{marginLeft:"24px"}}>
+                <Typography 
+                style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"4px",display:"inline-flex",}}>
+
+                   OverAll  Service Feedback
+                </Typography>
+                <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
+
+            <Grid xs={12} md={12} style={{marginTop:"16px"}}>
+
+                <FormControl>
+      <FormLabel id="demo-row-radio-buttons-group-label">1. Over All Service Expereince ?</FormLabel>
+
+        {/* <Typography style={{paddingLeft:"16px"}}>
+
+          <StarRating/>
+        </Typography> */}
+
+       <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        type= "radio"
+        name="value7"
+       value= {toSend.value7}
+      onChange={handleChange}
+      >
+
+       {/* <Rating name="value1" value={toSend.value1} onChange={handleChange} size="large" /> */}
+        <FormControlLabel value="very good" control={<Radio  />} label="Very Good" />
+        <FormControlLabel value="average" control={<Radio />} label="Average" />
+        <FormControlLabel value="poor" control={<Radio />} label="Poor" />
+        
+      </RadioGroup>
+
+      </FormControl>
+     
+      </Grid>
+      </Grid>
+
 
                
 
@@ -259,14 +342,14 @@ export default function BackToTop(props) {
                 <Typography 
                 style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"4px",display:"inline-flex",}}>
 
-                    Overall experience with our service
+                    Service Feedback
                 </Typography>
                 <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
 
             <Grid xs={12} md={12} style={{marginTop:"16px"}}>
 
                 <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label">How would you rate your overall experience with our service?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label">2. How well do our E-Lock meet yout needs?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -276,15 +359,15 @@ export default function BackToTop(props) {
       onChange={handleChange}
 
       >
-       
-        <FormControlLabel value="Good" control={<Radio />} label="Good" />
-        <FormControlLabel value="Average" control={<Radio />} label="Average" />
-        <FormControlLabel value="Poor" control={<Radio />} label="Poor" />
+       {/* <Rating name="value1" value={toSend.value1} onChange={handleChange} size="large" /> */}
+
+        <FormControlLabel value="exceptionally well" control={<Radio />} label="Exceptionally Well" />
+        <FormControlLabel value="adequately well"control={<Radio />} label="Adequately Well" />
+        <FormControlLabel value="not well"  control={<Radio />} label="Not Well" /> 
         
-       
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>How would you rate the courtesy & efficiency of Service agent?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>3. How easy is it to navigate our website?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -293,9 +376,24 @@ export default function BackToTop(props) {
        value= {toSend.value2}
       onChange={handleChange}
       >
-         <FormControlLabel value="Good" control={<Radio />} label="Good" />
-        <FormControlLabel value="Average" control={<Radio />} label="Average" />
-        <FormControlLabel value="Poor" control={<Radio />} label="Poor" />
+         <FormControlLabel value="extremely easy" control={<Radio />} label="Extremely Easy" />
+        <FormControlLabel value="average" control={<Radio />} label="Average" />
+        <FormControlLabel value="difficult" control={<Radio />} label="Difficult" />
+       
+      </RadioGroup>
+
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>4. How would you rate the courtesy & efficiency of Service agent?</FormLabel>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        type= "radio"
+        name="value3"
+       value= {toSend.value3}
+      onChange={handleChange}
+      >
+         <FormControlLabel value="very good" control={<Radio />} label="Very Good" />
+        <FormControlLabel value="average" control={<Radio />} label="Average" />
+        <FormControlLabel value="poor" control={<Radio />} label="Poor" />
        
       </RadioGroup>
     </FormControl>
@@ -309,46 +407,33 @@ export default function BackToTop(props) {
                 <Typography 
                 style={{fontWeight:"bolder",marginTop:"16px",marginBottom:"4px",display:"inline-flex",}}>
 
-Feedback Information
+                Feedback Information
                     </Typography>
                 <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
 
-                   
-               
-            
                 <Grid xs={12} style={{marginTop:"16px"}}>
                 <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Did we appropriately respond to your customers service needs today?</FormLabel>
-      <RadioGroup
-       row
-       aria-labelledby="demo-row-radio-buttons-group-label"
-       type= "radio"
-       name="value3"
-      value= {toSend.value3}
-     onChange={handleChange}
+     
 
-      >
-        <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-        <FormControlLabel value="no" control={<Radio />} label="No" />
-        <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
-      </RadioGroup>
+      
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Did you receive the service, information, or help you needed?</FormLabel>
+     
+
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>5. Was your customer service issue resolved? </FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
-        type= "radio"
+        type= "radio" 
         name="value4"
        value= {toSend.value4}
       onChange={handleChange}
-
       >
         <FormControlLabel value="yes" control={<Radio />} label="Yes" />
         <FormControlLabel value="no" control={<Radio />} label="No" />
         <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Were you treated in a courteous and considerate manner?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>6. Did you find it easy to contact us?</FormLabel>
       <RadioGroup
          row
          aria-labelledby="demo-row-radio-buttons-group-label"
@@ -363,47 +448,18 @@ Feedback Information
         <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Was service provided in a timely manner?</FormLabel>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        type= "radio" 
-        name="value6"
-       value= {toSend.value6}
-      onChange={handleChange}
-      >
-        <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-        <FormControlLabel value="no" control={<Radio />} label="No" />
-        <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
-      </RadioGroup>
-
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Were you satisfied with your overall service experience?</FormLabel>
-      <RadioGroup
-         row
-         aria-labelledby="demo-row-radio-buttons-group-label"
-         type= "radio"
-         name="value7"
-        value= {toSend.value7}
-       onChange={handleChange}
-
-      >
-        <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-        <FormControlLabel value="no" control={<Radio />} label="No" />
-        <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
-      </RadioGroup>
-
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>Would you use our customer service in the future?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>7. Which feature are the most valuable according to you?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         type= "radio"
-        name="value8"
-       value= {toSend.value8}
+        name="value6"
+       value= {toSend.value6}
       onChange={handleChange}
       >
-        <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-        <FormControlLabel value="no" control={<Radio />} label="No" />
-        <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
+        <FormControlLabel value="geofencing" control={<Radio />} label="GeoFencing" />
+        <FormControlLabel value="alerts" control={<Radio />} label="Alerts" />
+        <FormControlLabel value="reports" control={<Radio />} label="Reports" />
       </RadioGroup>
 
 
@@ -416,7 +472,7 @@ Feedback Information
         <Typography 
                 style={{fontWeight:"bolder",display:"inline-flex",}}>
 
-                  <h5>What should we change in order to live up to your expectations?</h5>
+                  <h5>8. Which missing features would you like us to incorporate?</h5>
                 </Typography>
                 {/* <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/> */}
         </Grid>
@@ -430,9 +486,13 @@ Feedback Information
             onChange={handleChange}
             multiline
             rows={3}
+            inputProps={{
+              maxLength: 200
+            }}
             placeholder="please share your feedback."
             style ={{width: '100%',paddingRight:"16px",textAlign:"left"}}
-            InputProps={{ style: {fontSize: 15,} }}   
+            InputProps={{style: {fontSize: 15,} }}   
+
           />
           </Grid>
        
