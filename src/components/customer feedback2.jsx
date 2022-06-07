@@ -194,17 +194,18 @@ export default function BackToTop(props) {
                 <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/>
 
 
-                <Grid container xs={12} md={12} lg={12} style={{marginTop:"12px",marginBottom:"6px"}}>
+              <Grid container xs={12} md={12} lg={12} style={{marginTop:"12px",marginBottom:"6px"}}>
                   
-                <Grid  xs={8} md={6} lg={4} style={{marginTop:"16px",}}>
+                <Grid  xs={8} md={6} lg={4} style={{marginTop:"16px",width:"100%"}}>
 
-                  <Grid  xs={12} md={6} style={{marginBottom:"6px"}} >
+                  <Grid  xs={12} md={6} lg={12}  style={{marginBottom:"6px"}} >
                   <Typography>
                     Enter Name *
                   </Typography>
 
                   </Grid>
-                  <Grid xs={12} md={6} >
+
+                  <Grid xs={12} md={6} lg={7} >
                   <TextField
                     required
                     type="text"
@@ -230,13 +231,13 @@ export default function BackToTop(props) {
 
                 <Grid  xs={8} md={6}  lg={4} style={{marginTop:"16px"}}>
 
-                      <Grid xs={12} md={6} lg={6}  style={{marginBottom:"6px"}}>
+                      <Grid xs={12} md={6} lg={12}  style={{marginBottom:"6px"}}>
                         <Typography>
                           Enter Email *
                         </Typography>
                       </Grid>
 
-                      <Grid xs={12} md={6} lg={6}>
+                      <Grid xs={12} md={6} lg={7}>
                      
                       <TextField
                         required
@@ -257,13 +258,13 @@ export default function BackToTop(props) {
 
                     <Grid  xs={8} md={6} lg={4} style={{marginTop:"16px",}}>
 
-                        <Grid xs={12} md={6}  style={{marginBottom:"6px"}}>
+                        <Grid xs={12} md={6} lg={12}  style={{marginBottom:"6px"}}>
                           <Typography>
                             Enter Contact
                           </Typography>
                         </Grid>
 
-                        <Grid xs={12} md={6} >
+                        <Grid xs={12} md={6} lg={7} >
                         <TextField
                           required
                           type="tel"
@@ -321,11 +322,31 @@ export default function BackToTop(props) {
       >
 
        {/* <Rating name="value1" value={toSend.value1} onChange={handleChange} size="large" /> */}
-        <FormControlLabel value="very good" control={<Radio  />} label="Very Good" />
-        <FormControlLabel value="average" control={<Radio />} label="Average" />
-        <FormControlLabel value="poor" control={<Radio />} label="Poor" />
+       <FormControlLabel value="excellent" control={<Radio  size='small' />} label="Excellent" />
+        <FormControlLabel value="good" control={<Radio  size='small'/>} label="Good" />
+        <FormControlLabel value="average" control={<Radio  size='small'/>} label="Average" />
+        <FormControlLabel value="poor" control={<Radio  size='small'/>} label="Poor" />
         
       </RadioGroup>
+
+      <FormLabel id="demo-row-radio-buttons-group-label">2. How long have been using our services ?</FormLabel>
+
+<RadioGroup
+row
+aria-labelledby="demo-row-radio-buttons-group-label"
+type= "radio"
+name="value8"
+value= {toSend.value8}
+onChange={handleChange}
+>
+
+<FormControlLabel value="6-12 months" control={<Radio  size='small' />} label="6-12 Months" />
+<FormControlLabel value="1-2 years" control={<Radio  size='small'/>} label="1-2 Years" />
+<FormControlLabel value="more than 2+ years" control={<Radio  size='small'/>} label="More Than 2+ Years" />
+<FormControlLabel value="more than 4+ years" control={<Radio  size='small'/>} label="More Than 4+ Years" />
+
+</RadioGroup>
+
 
       </FormControl>
      
@@ -346,7 +367,7 @@ export default function BackToTop(props) {
             <Grid xs={12} md={12} style={{marginTop:"16px"}}>
 
                 <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label">2. How well do our E-Lock meet yout needs?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label">3. How well do our E-Lock meet yout needs?</FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -358,13 +379,16 @@ export default function BackToTop(props) {
       >
        {/* <Rating name="value1" value={toSend.value1} onChange={handleChange} size="large" /> */}
 
-        <FormControlLabel value="exceptionally well" control={<Radio />} label="Exceptionally Well" />
-        <FormControlLabel value="adequately well"control={<Radio />} label="Adequately Well" />
-        <FormControlLabel value="not well"  control={<Radio />} label="Not Well" /> 
+        <FormControlLabel value="exceptionally well" control={<Radio  size='small'/>} label="Exceptionally Well" />
+        <FormControlLabel value="adequately well"control={<Radio  size='small'/>} label="Adequately Well" />
+        <FormControlLabel value="not well"  control={<Radio  size='small'/>} label="Not Well" /> 
         
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>3. How easy is it to navigate our website?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
+        4. How easy is it to navigate our website features?
+      </FormLabel>
+
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -373,13 +397,15 @@ export default function BackToTop(props) {
        value= {toSend.value2}
       onChange={handleChange}
       >
-         <FormControlLabel value="extremely easy" control={<Radio />} label="Extremely Easy" />
-        <FormControlLabel value="average" control={<Radio />} label="Average" />
-        <FormControlLabel value="difficult" control={<Radio />} label="Difficult" />
+         <FormControlLabel value="extremely easy" control={<Radio  size='small'/>} label="Extremely Easy" />
+        <FormControlLabel value="average" control={<Radio  size='small'/>} label="Average" />
+        <FormControlLabel value="difficult" control={<Radio  size='small'/>} label="Difficult" />
        
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>4. How would you rate the courtesy & efficiency of Service agent?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
+        5. How would you rate the courtesy & efficiency of Service agent?
+        </FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -388,9 +414,9 @@ export default function BackToTop(props) {
        value= {toSend.value3}
       onChange={handleChange}
       >
-         <FormControlLabel value="very good" control={<Radio />} label="Very Good" />
-        <FormControlLabel value="average" control={<Radio />} label="Average" />
-        <FormControlLabel value="poor" control={<Radio />} label="Poor" />
+         <FormControlLabel value="very good" control={<Radio  size='small'/>} label="Very Good" />
+        <FormControlLabel value="average" control={<Radio  size='small'/>} label="Average" />
+        <FormControlLabel value="poor" control={<Radio  size='small'/>} label="Poor" />
        
       </RadioGroup>
     </FormControl>
@@ -416,21 +442,26 @@ export default function BackToTop(props) {
 
      
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>5. Was your customer service issue resolved? </FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
+        6. Was your customer service issue resolved? 
+      </FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         type= "radio" 
         name="value4"
        value= {toSend.value4}
+       
       onChange={handleChange}
+      // style={{background:"#EAEAE8",borderRadius:"16px"}}
       >
-        <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-        <FormControlLabel value="no" control={<Radio />} label="No" />
-        <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
+        <FormControlLabel value="yes" control={<Radio  size='small'/>} label="Yes" />
+        <FormControlLabel value="no" control={<Radio  size='small'/>} label="No" />
+        <FormControlLabel value="not sure" control={<Radio  size='small'/>} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>6. Did you find it easy to contact us?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
+        7. Did you find it easy to contact us?</FormLabel>
       <RadioGroup
          row
          aria-labelledby="demo-row-radio-buttons-group-label"
@@ -440,12 +471,14 @@ export default function BackToTop(props) {
        onChange={handleChange}
 
       >
-        <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-        <FormControlLabel value="no" control={<Radio />} label="No" />
-        <FormControlLabel value="not sure" control={<Radio />} label="Not Sure" />
+        <FormControlLabel value="yes" control={<Radio  size='small'/>} label="Yes" />
+        <FormControlLabel value="no" control={<Radio  size='small'/>} label="No" />
+        <FormControlLabel value="not sure" control={<Radio  size='small'/>} label="Not Sure" />
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>7. Which feature are the most valuable according to you?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
+        8. Which feature are the most valuable according to you?
+        </FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -454,9 +487,9 @@ export default function BackToTop(props) {
        value= {toSend.value6}
       onChange={handleChange}
       >
-        <FormControlLabel value="geofencing" control={<Radio />} label="GeoFencing" />
-        <FormControlLabel value="alerts" control={<Radio />} label="Alerts" />
-        <FormControlLabel value="reports" control={<Radio />} label="Reports" />
+        <FormControlLabel value="geofencing" control={<Radio  size='small'/>} label="GeoFencing" />
+        <FormControlLabel value="alerts" control={<Radio  size='small'/>} label="Alerts" />
+        <FormControlLabel value="reports" control={<Radio  size='small'/>} label="Reports" />
       </RadioGroup>
 
 
@@ -469,7 +502,7 @@ export default function BackToTop(props) {
         <Typography 
                 style={{fontWeight:"bolder",display:"inline-flex",}}>
 
-                  <h5>8. Which missing features would you like us to incorporate?</h5>
+                  <h5>9. Which missing features would you like us to incorporate?</h5>
                 </Typography>
                 {/* <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/> */}
         </Grid>
