@@ -96,6 +96,8 @@ export default function BackToTop(props) {
 
       const handleChange = (e) => {
         setToSend({ ...toSend, [e.target.name]: e.target.value });
+        setNameError(false);
+        setEmailError(false); 
       }; 
       
       
