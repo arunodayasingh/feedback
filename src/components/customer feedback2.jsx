@@ -221,7 +221,7 @@ export default function BackToTop(props) {
                     // style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px",display:""}}
                     />
                   </Grid>
-                  {nameError &&  <ToastContainer autoClose={false} />}
+                  {nameError &&  <ToastContainer autoClose={5000} />}
 
                 </Grid>
 
@@ -249,7 +249,7 @@ export default function BackToTop(props) {
                         style ={{width: '100%',paddingRight:"16px"}}
                         InputProps={{ maxlength: 10,style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
                         />
-                      {emailError &&   <ToastContainer autoClose={false} />}
+                      {emailError &&   <ToastContainer autoClose={5000} />}
                       </Grid>
                     </Grid>
 
