@@ -16,7 +16,6 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import validator from 'validator';
 
 
 function ScrollTop(props) {
@@ -66,11 +65,7 @@ ScrollTop.propTypes = {
 };
 
 
-const labels = {
-  1: 'Exceptionally Well',
-  2: 'Adequately Well',
-  3: 'Not Well',
-};
+
 
 export default function BackToTop(props) {
 
@@ -110,22 +105,22 @@ export default function BackToTop(props) {
 
       const onSubmit = (e) => {
 
-        let email = e.target.value;
+       
 
         
-          if(toSend.from_name.trim() == "" ){
+          if(toSend.from_name.trim() === "" ){
             toast.error("Name cannot be empty");
             setNameError(true);
             return false;
           }
           
-          else if(toSend.email.trim() == ""){
+          else if(toSend.email.trim() === ""){
             toast.error("Email cannot be empty");
             setEmailError(true);
             return false;
           }
 
-          else if(toSend.from_name.trim() !== "" && toSend.email.trim() == "" ){
+          else if(toSend.from_name.trim() !== "" && toSend.email.trim() === "" ){
             toast.error("Email cannot be empty");
             setEmailError(true);
             setNameError(false)
