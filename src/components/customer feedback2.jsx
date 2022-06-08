@@ -543,7 +543,7 @@ onChange={handleChange}
         <Typography 
                 style={{fontWeight:"bolder",display:"inline-flex",}}>
 
-                  <h5>9. If there was one new feture you could suggest, what would it be and why?</h5>
+                  <h5>9. If there was one new feature you could suggest, what would it be and why?</h5>
                 </Typography>
                 {/* <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/> */}
         </Grid>
