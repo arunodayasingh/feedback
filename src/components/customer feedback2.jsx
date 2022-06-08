@@ -73,6 +73,7 @@ export default function BackToTop(props) {
     const [toSend, setToSend] = useState({
         from_name: '',
         to_name: 'Customer Support ',
+        company_name: '',
         email: '',
         contact: '',
         message: '',
@@ -91,11 +92,13 @@ export default function BackToTop(props) {
       const [emailError, setEmailError] = useState(false)
       const [validEmail, setValidEmail] = useState(false)
       const [nameError, setNameError] = useState(false)
+      const [companyError, setCompanyError] = useState(false)
      
       let navigate = useNavigate();
 
       const handleChange = (e) => {
         setToSend({ ...toSend, [e.target.name]: e.target.value });
+        setCompanyError(false)
         setNameError(false);
         setEmailError(false); 
       }; 
@@ -108,7 +111,12 @@ export default function BackToTop(props) {
       const onSubmit = (e) => {
 
        
-
+        if(toSend.company_name.trim() === "" ){
+          toast.error("company name cannot be empty");
+          setCompanyError(true);
+          return false;
+        }
+        
         
           if(toSend.from_name.trim() === "" ){
             toast.error("Name cannot be empty");
@@ -195,8 +203,39 @@ export default function BackToTop(props) {
 
 
               <Grid container xs={12} md={12} lg={12} style={{marginTop:"12px",marginBottom:"6px"}}>
+              <Grid  xs={8} md={6} lg={6} style={{marginTop:"16px",width:"100%"}}>
+
+                <Grid  xs={12} md={6} lg={12}  style={{marginBottom:"6px"}} >
+                <Typography>
+                  Enter Company Name *
+                </Typography>
+
+                </Grid>
+
+                <Grid xs={12} md={6} lg={6} >
+                <TextField
+                  required
+                  type="text"
+                  name="company_name"
+                  placeholder="Company Name"
+                  error={!nameError && companyError }
+                  helperText={companyError && !nameError && "Please enter company name "}
+                  value={toSend.company_name}
+                  onChange={handleChange}
+
+                  inputProps={{
+                    maxLength: 20
+                  }}
+                  style ={{width: '100%',paddingRight:"16px"}}
+                  InputProps={{ style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
+                  // style={{height:"40px", width:"330px",marginRight:"24px",marginTop:"4px",display:""}}
+                  />
+                </Grid>
+                {companyError &&  <ToastContainer autoClose={4000} />}
+
+                </Grid>
                   
-                <Grid  xs={8} md={6} lg={4} style={{marginTop:"16px",width:"100%"}}>
+                <Grid  xs={8} md={6} lg={6} style={{marginTop:"16px",width:"100%"}}>
 
                   <Grid  xs={12} md={6} lg={12}  style={{marginBottom:"6px"}} >
                   <Typography>
@@ -205,7 +244,7 @@ export default function BackToTop(props) {
 
                   </Grid>
 
-                  <Grid xs={12} md={6} lg={7} >
+                  <Grid xs={12} md={6} lg={6} >
                   <TextField
                     required
                     type="text"
@@ -229,7 +268,7 @@ export default function BackToTop(props) {
                 </Grid>
 
 
-                <Grid  xs={8} md={6}  lg={4} style={{marginTop:"16px"}}>
+                <Grid  xs={8} md={6}  lg={6} style={{marginTop:"16px"}}>
 
                       <Grid xs={12} md={6} lg={12}  style={{marginBottom:"6px"}}>
                         <Typography>
@@ -237,7 +276,7 @@ export default function BackToTop(props) {
                         </Typography>
                       </Grid>
 
-                      <Grid xs={12} md={6} lg={7}>
+                      <Grid xs={12} md={6} lg={6}>
                      
                       <TextField
                         required
@@ -256,7 +295,7 @@ export default function BackToTop(props) {
                       </Grid>
                     </Grid>
 
-                    <Grid  xs={8} md={6} lg={4} style={{marginTop:"16px",}}>
+                    <Grid  xs={8} md={6} lg={6} style={{marginTop:"16px",}}>
 
                         <Grid xs={12} md={6} lg={12}  style={{marginBottom:"6px"}}>
                           <Typography>
@@ -264,14 +303,16 @@ export default function BackToTop(props) {
                           </Typography>
                         </Grid>
 
-                        <Grid xs={12} md={6} lg={7} >
+                        <Grid xs={12} md={6} lg={6} >
                         <TextField
                           required
                           type="tel"
                           name="contact"
                           placeholder="Contact No."
                           value={toSend.contact}
-                         
+                          inputProps={{
+                            maxlength: 12
+                          }}
                           onChange={handleChange}
                           style ={{width: '100%',paddingRight:"16px"}}
                           InputProps={{ maxlength: 10,style: { fontSize: 15,width:"150%",maxLength:10} }}
@@ -329,7 +370,7 @@ export default function BackToTop(props) {
         
       </RadioGroup>
 
-      <FormLabel id="demo-row-radio-buttons-group-label">2. How long have been using our services ?</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>2. How long have been using our services ?</FormLabel>
 
 <RadioGroup
 row
@@ -502,7 +543,7 @@ onChange={handleChange}
         <Typography 
                 style={{fontWeight:"bolder",display:"inline-flex",}}>
 
-                  <h5>9. Which missing features would you like us to incorporate?</h5>
+                  <h5>9. If there was one new feture you could suggest, what would it be and why?</h5>
                 </Typography>
                 {/* <hr style={{width:"98%",border:"1px solid black",marginRight:"48px"}}/> */}
         </Grid>
