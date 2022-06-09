@@ -91,9 +91,8 @@ export default function Thankyou(props) {
 		                  <FcApproval size={100}  />
                     </div>
                
-              <Typography className='thankhead2' style={{textAlign:"justify",fontFamily:"monospace",marginLeft:"24px",marginRight:"24px",marginTop:"8px",fontSize:"22px",justifyContent:"left"}}>
-                Thank you for providing us with your feedback! It means the world to us.<br/>
-                Hope to see you again soon! 
+              <Typography className='thankhead2' style={{textAlign:"center",fontFamily:"monospace",marginLeft:"24px",marginRight:"24px",marginTop:"8px",fontSize:"22px",justifyContent:"left"}}>
+                Thank you for providing us with your feedback, Hope to see you again soon.
                   
               </Typography> 
 

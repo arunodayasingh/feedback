@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState ,useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {Typography,useScrollTrigger} from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -69,7 +69,7 @@ ScrollTop.propTypes = {
 
 
 
-export default function BackToTop(props) {
+export default function FeedbackForm(props) {
 
 
     const [toSend, setToSend] = useState({
@@ -95,6 +95,7 @@ export default function BackToTop(props) {
       const [validEmail, setValidEmail] = useState(false)
       const [nameError, setNameError] = useState(false)
       const [companyError, setCompanyError] = useState(false)
+
       const [optionError1, setOptionError1] = useState(false);
       const [optionError2, setOptionError2] = useState(false);
       const [optionError3, setOptionError3] = useState(false);
@@ -103,6 +104,7 @@ export default function BackToTop(props) {
       const [optionError6, setOptionError6] = useState(false);
       const [optionError7, setOptionError7] = useState(false);
       const [optionError8, setOptionError8] = useState(false);
+
       const [helperText1, setHelperText1] = useState("");
       const [helperText2, setHelperText2] = useState("");
       const [helperText3, setHelperText3] = useState("");
@@ -115,22 +117,22 @@ export default function BackToTop(props) {
       let navigate = useNavigate();
 
       const handleChange = (e) => {
-        setToSend({ ...toSend, [e.target.name]: e.target.value });
-        setCompanyError(false);
-        setNameError(false);
-        setEmailError(false); 
-        setValidEmail(false);
-        setOptionError7(false);
-        setOptionError8(false);
-        setOptionError1(false);
-        setOptionError2(false);
-        setOptionError3(false);
-        setOptionError4(false);
-        setOptionError5(false);
-        setOptionError6(false);
-
-      }; 
+        setToSend({ ...toSend, [e.target.name]: e.target.value, errormsg: value  });
+          setCompanyError(false);
+          setNameError(false);
+          setEmailError(false); 
+          setValidEmail(false);
+          setOptionError7(false);
+         
+          
+          
+      };
+     
       
+     
+
+     
+       
       
       
       
@@ -298,7 +300,7 @@ export default function BackToTop(props) {
                   onChange={handleChange}
 
                   inputProps={{
-                    maxLength: 50
+                    maxLength: 20
                   }}
                   style ={{width: '100%',paddingRight:"16px"}}
                   InputProps={{ style: { fontSize: 15,width:"150%",marginRight:"12px" } }}
@@ -380,14 +382,16 @@ export default function BackToTop(props) {
 
                         <Grid xs={12} md={6} lg={6} >
                         <TextField
-                          type="number"
+                          type="tel"
                           name="contact"
                           placeholder="Contact No."
                           value={toSend.contact}
-                          inputProps={{ maxlength: 12 }}
+                          inputProps={{
+                            maxlength: 12
+                          }}
                           onChange={handleChange}
                           style ={{width: '100%',paddingRight:"16px"}}
-                          InputProps={{ style: { fontSize: 15,width:"150%"} }}
+                          InputProps={{ maxlength: 10,style: { fontSize: 15,width:"150%",maxLength:10} }}
                           />
 
                         </Grid>
@@ -430,6 +434,7 @@ export default function BackToTop(props) {
         aria-labelledby="demo-row-radio-buttons-group-label"
         type= "radio"
         name="value7"
+
        value= {toSend.value7}
       onChange={handleChange}
       >
@@ -442,7 +447,7 @@ export default function BackToTop(props) {
         <FormControlLabel value="average" control={<Radio  size='small'/>} label="Average" />
         <FormControlLabel value="poor" control={<Radio  size='small'/>} label="Poor" />
       </RadioGroup>
-      {!validEmail && optionError7 && <FormHelperText style={{color:"red"}}>{helperText7}</FormHelperText>}
+      {optionError7 && <FormHelperText style={{color:"red"}}>{helperText7}</FormHelperText>};
        {optionError7  && <ToastContainer autoClose={4000}/>}
 
       <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>2. How long have been using our services ?</FormLabel>
@@ -462,8 +467,8 @@ onChange={handleChange}
 <FormControlLabel value="4+ years" control={<Radio  size='small'/>} label="4+ Years" />
 
 </RadioGroup>
-{!optionError7 && optionError8 && <FormHelperText style={{color:"red"}}>{helperText8}</FormHelperText>}
-       {!optionError7 && optionError8  && <ToastContainer autoClose={4000}/>}
+{optionError8 && <FormHelperText style={{color:"red"}}>{helperText8}</FormHelperText>}
+       {optionError8  && <ToastContainer autoClose={4000}/>}
 
 
       </FormControl>
@@ -500,9 +505,9 @@ onChange={handleChange}
         <FormControlLabel value="exceptionally well" control={<Radio  size='small'/>} label="Exceptionally Well" />
         <FormControlLabel value="adequately well"control={<Radio  size='small'/>} label="Adequately Well" />
         <FormControlLabel value="not well"  control={<Radio  size='small'/>} label="Not Well" /> 
-      </RadioGroup>
         {optionError1 && <FormHelperText style={{color:"red"}}>{helperText1}</FormHelperText>}
        {optionError1  && <ToastContainer autoClose={4000}/>}
+      </RadioGroup>
 
       <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
         4. How easy is it to navigate our website features?
@@ -520,9 +525,9 @@ onChange={handleChange}
         <FormControlLabel value="average" control={<Radio  size='small'/>} label="Average" />
         <FormControlLabel value="difficult" control={<Radio  size='small'/>} label="Difficult" />
         
-      </RadioGroup>
         {optionError2 && <FormHelperText style={{color:"red"}}>{helperText2}</FormHelperText>}
        {optionError2  && <ToastContainer autoClose={4000}/>}
+      </RadioGroup>
 
       <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
         5. How would you rate the courtesy & efficiency of Service agent?
@@ -539,9 +544,9 @@ onChange={handleChange}
         <FormControlLabel value="average" control={<Radio  size='small'/>} label="Average" />
         <FormControlLabel value="poor" control={<Radio  size='small'/>} label="Poor" />
         
-      </RadioGroup>
         {optionError3 && <FormHelperText style={{color:"red"}}>{helperText3}</FormHelperText>}
        {optionError3  && <ToastContainer autoClose={4000}/>}
+      </RadioGroup>
     </FormControl>
                     
                 </Grid>
@@ -581,9 +586,9 @@ onChange={handleChange}
         <FormControlLabel value="yes" control={<Radio  size='small'/>} label="Yes" />
         <FormControlLabel value="no" control={<Radio  size='small'/>} label="No" />
         <FormControlLabel value="not sure" control={<Radio  size='small'/>} label="Not Sure" />
-      </RadioGroup>
         {optionError4 && <FormHelperText style={{color:"red"}}>{helperText4}</FormHelperText>}
        {optionError4  && <ToastContainer autoClose={4000}/>}
+      </RadioGroup>
 
       <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
         7. Did you find it easy to contact us?</FormLabel>
@@ -600,9 +605,9 @@ onChange={handleChange}
         <FormControlLabel value="no" control={<Radio  size='small'/>} label="No" />
         <FormControlLabel value="not sure" control={<Radio  size='small'/>} label="Not Sure" />
 
-      </RadioGroup>
         {optionError5 && <FormHelperText style={{color:"red"}}>{helperText5}</FormHelperText>}
        {optionError5  && <ToastContainer autoClose={4000}/>}
+      </RadioGroup>
 
       <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
         8. Which feature are the most valuable according to you?
@@ -618,9 +623,9 @@ onChange={handleChange}
         <FormControlLabel value="geofencing" control={<Radio  size='small'/>} label="GeoFencing" />
         <FormControlLabel value="alerts" control={<Radio  size='small'/>} label="Alerts" />
         <FormControlLabel value="reports" control={<Radio  size='small'/>} label="Reports" />
-      </RadioGroup>
         {optionError6 && <FormHelperText style={{color:"red"}}>{helperText6}</FormHelperText>}
        {optionError6  && <ToastContainer autoClose={4000}/>}
+      </RadioGroup>
 
 
     </FormControl>
