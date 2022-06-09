@@ -167,49 +167,49 @@ export default function BackToTop(props) {
             return false;
           }
 
-          if(toSend.value7 == ""){
+          if(toSend.value7 === ""){
             toast.error("please select option");
             setHelperText7("Please select an option.");
             setOptionError7(true);
             return false;
           }
-          if(toSend.value8 == ""){
+          if(toSend.value8 === ""){
             toast.error("please select option");
             setHelperText8("Please select an option.");
             setOptionError8(true);
             return false;
           }
-          if(toSend.value1 == ""){
+          if(toSend.value1 === ""){
             toast.error("please select option");
             setHelperText1("Please select an option.");
             setOptionError1(true);
             return false;
           }
-          if(toSend.value2 == ""){
+          if(toSend.value2 === ""){
             toast.error("please select option");
             setHelperText2("Please select an option.");
             setOptionError2(true);
             return false;
           }
-          if(toSend.value3 == ""){
+          if(toSend.value3 === ""){
             toast.error("please select option");
             setHelperText3("Please select an option.");
             setOptionError3(true);
             return false;
           }
-          if(toSend.value4 == ""){
+          if(toSend.value4 === ""){
             toast.error("please select option");
             setHelperText4("Please select an option.");
             setOptionError4(true);
             return false;
           }
-          if(toSend.value5 == ""){
+          if(toSend.value5 === ""){
             toast.error("please select option");
             setHelperText5("Please select an option.");
             setOptionError5(true);
             return false;
           }
-          if(toSend.value6 == ""){
+          if(toSend.value6 === ""){
             toast.error("please select option");
             setHelperText6("Please select an option.");
             setOptionError6(true);
