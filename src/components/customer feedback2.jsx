@@ -384,7 +384,8 @@ export default function BackToTop(props) {
                           name="contact"
                           placeholder="Contact No."
                           value={toSend.contact}
-                          inputProps={{ maxlength: 12 }}
+                          maxLength="12"
+                          // inputProps={{ maxlength: 12 }}
                           onChange={handleChange}
                           style ={{width: '100%',paddingRight:"16px"}}
                           InputProps={{ style: { fontSize: 15,width:"150%"} }}
@@ -525,7 +526,7 @@ onChange={handleChange}
        {optionError2  && <ToastContainer autoClose={4000}/>}
 
       <FormLabel id="demo-row-radio-buttons-group-label" style={{marginTop:"8px"}}>
-        5. How would you rate the courtesy & efficiency of Service agent?
+        5. How would you rate the courtesy & efficiency of service agent?
         </FormLabel>
       <RadioGroup
         row
